@@ -1,0 +1,6 @@
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\wsBlackBoard\bin\wsBlackBoard.dll.config
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\wsBlackBoard\bin\wsBlackBoard.dll
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\wsBlackBoard\bin\wsBlackBoard.pdb
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\wsBlackBoard\obj\Debug\wsBlackBoard.csprojResolveAssemblyReference.cache
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\wsBlackBoard\obj\Debug\wsBlackBoard.dll
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\wsBlackBoard\obj\Debug\wsBlackBoard.pdb

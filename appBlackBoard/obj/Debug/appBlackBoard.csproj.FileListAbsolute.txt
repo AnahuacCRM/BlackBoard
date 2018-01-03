@@ -1,0 +1,13 @@
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\appBlackBoard.exe.config
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\appBlackBoard.exe
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\appBlackBoard.pdb
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\Data.dll
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\DotNetZip.dll
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\Oracle.ManagedDataAccess.dll
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\Data.pdb
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\Data.xml
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\bin\Debug\DotNetZip.xml
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\obj\Debug\appBlackBoard.exe
+c:\users\atmx34z40\documents\visual studio 2015\Projects\BlackBoard\appBlackBoard\obj\Debug\appBlackBoard.pdb
+C:\Users\atmx34z40\Documents\Visual Studio 2015\Projects\BlackBoard\appBlackBoard\obj\Debug\appBlackBoard.csproj.ResolveComReference.cache
+C:\Users\atmx34z40\Documents\Visual Studio 2015\Projects\BlackBoard\appBlackBoard\obj\Debug\appBlackBoard.csprojResolveAssemblyReference.cache

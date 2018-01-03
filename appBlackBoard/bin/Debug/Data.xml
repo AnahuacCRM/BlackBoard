@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Data</name>
+    </assembly>
+    <members>
+        <member name="T:Data.ClassData">
+             <summary>
+                   AUTOR: JCMB
+                   FECHA: 19/ABRIL/2016
+                  MÓDULO: GENERAL
+                   TAREA: Clase ClassData que viene a sustituir el código duro en los Webservice para las conexiones a la Base de Datos. 
+                          Se implementa varios métodos para manipular la salida de información, acorde a las necesidades.
+                          Tambien permite obtener algunos objetos, como Connection, Command y Parameter.
+                    
+            MODIFICACIÓN: Se agrega el método para desencriptar el ConnectionString que se nos envía como parámetro para crear el objeto
+                          OracleConnection. Se agregan propiedades y atributos necesarios para llevar a cabo la operación. Para mayor 
+                          información leer la documentación.
+                          
+            MODIFICFACIÓN: Se cambia el tipo de dato que recibe en OracleParameters para el parámetro psValue, de String a Object.
+                           Este cambio se da por la necesidad de enviar diferentes tipos de objetos como parámetros a la base de datos.
+            MODIFICFACIÓN: Se agrega método getExecuteCommandToTable2, el cual se ejecuta mediante un OracleDataAdapter, y retorna el primer DataTable.
+                           
+             MODIFICACIÓN: Se agrega el nuget Oracle.ManagedDataAccess que da compatibilad a la libreria a los nuevos servidores AWS
+                           y mantiene compatibilad con las operaciones ralizadas con anterioridad.
+             </summary>
+        </member>
+        <member name="F:Data.ClassData.csValor">
+            <summary>
+            Valor para generar la llave de encriptacion.
+            </summary>
+            <remarks>Puede ser de cualquier tamaño</remarks>
+        </member>
+        <member name="F:Data.ClassData.csAlgoritmo">
+            <summary>
+            Nombre del Algoritmo.
+            </summary>
+            <remarks>Puede ser MD5 o SHA1. SHA1 es un poco mas lento pero es mas seguro</remarks>
+        </member>
+        <member name="F:Data.ClassData.cnInteracciones">
+            <summary>
+            Numero de Iteraciones.
+            </summary>
+            <remarks>1 o 2 iteraciones son suficientes</remarks>
+        </member>
+        <member name="F:Data.ClassData.csVector">
+            <summary>
+            Vector Inicial
+            </summary>
+            <remarks>
+            Debe ser de 16 caracteres exactamente
+            </remarks>
+        </member>
+        <member name="F:Data.ClassData.cnLlave">
+            <summary>
+            Tamaño de la Llave
+            </summary>
+            <remarks>Puede ser de 128, 192 y 256</remarks>
+        </member>
+        <member name="M:Data.ClassData.getOracleCommand(Oracle.ManagedDataAccess.Client.OracleConnection)">
+            <summary>
+            Método que permite obtener un objeto OracleCommand, útil para enviar parámetros a paquetes y procedimientos.
+            </summary>
+            <param name="poConnection">Objeto OracleConnection necesario para hacer el objeto OracleCommand. Utilice el metodo getOracleConnection para obtener este parámetro.</param>
+        </member>
+        <member name="M:Data.ClassData.getOracleParameter(Oracle.ManagedDataAccess.Client.OracleDbType,System.Data.ParameterDirection,System.Int32,System.String,System.Object)">
+            <summary>
+            Método que permite obtener un objeto OracleParameter, utilizado en el envío de parámetros Input/Output de un paquete o procedimiento.
+            </summary>
+            <param name="poType">Es el tipo de dato de Oracle (Varchar2, Int, Number...)</param>
+            <param name="pnSize">Es el tamaño del parámetro. Se utiliza principalmente para el tipo de dato Varchar2. Si no conoce o no desea establecer un valor, establezca en Cero el valor.</param>
+            <param name="poDirection">Establece si el parámetro es de tipo Input, Output...</param>
+            <param name="psNameParameter">Es el nombre del parámetro que está establecido en su paquete, procedimiento...</param>
+            <param name="psValue">Es el valor que tendrá el parámetro. Si no desea establecer un valor, establezca el valor con null.</param>
+        </member>
+        <member name="M:Data.ClassData.getExecuteQuery(System.String,Oracle.ManagedDataAccess.Client.OracleConnection)">
+            <summary>
+            Método que permite ejecutar un query sin parámetros y con un solo dato de retorno. Ideal para Selects.
+            </summary>
+            <param name="poConnection">Objeto OracleConnection necesario para conectarse a la B.D. y ejecutar el Query. </param>
+            <param name="psQuery">Es el Query a ejecutar.</param>
+        </member>
+        <member name="M:Data.ClassData.getExecuteQueryToTable(System.String,Oracle.ManagedDataAccess.Client.OracleConnection)">
+            <summary>
+            Método que permite ejecutar un query, retornando un DataTable.
+            </summary>
+            <param name="poConnection">Objeto OracleConnection necesario para conectarse a la B.D. y ejecutar el Query. </param>
+            <param name="psQuery">Es el Query a ejecutar.</param>
+        </member>
+        <member name="M:Data.ClassData.getExecuteCommand(Oracle.ManagedDataAccess.Client.OracleCommand)">
+            <summary>
+            Método que permite ejecutar un OracleCommand y deja disponible el objeto para su manipulación. 
+            Retorna un mensaje si ocurre un error.
+            </summary>
+            <param name="poCommand">Objeto OracleCommand el cual se ejecutará con los parámetros, query y conexión establecidas. </param>
+        </member>
+        <member name="M:Data.ClassData.getExecuteCommandToTable(Oracle.ManagedDataAccess.Client.OracleCommand)">
+            <summary>
+            Método que permite ejecutar un OracleCommand y Retorna un DataTable con los resultados. 
+            Ideal para ejecutar paquetes o procedimientos con parámetros. 
+            </summary>
+            <param name="poCommand">Objeto OracleCommand el cual se ejecutará con los parámetros, query y conexión establecidas. </param>
+        </member>
+        <member name="M:Data.ClassData.getExecuteCommandToTable2(Oracle.ManagedDataAccess.Client.OracleCommand)">
+            <summary>
+            Método que permite ejecutar un OracleCommand y Retorna un DataTable con los resultados a través de OracleDataAdapter V2. 
+            Ideal para ejecutar paquetes o procedimientos con parámetros. 
+            A diferencia del método getExecuteCommandToTable, éste te devueve en una tabla el error (en caso de haber ocurrido) en una columna llamada ErrorDeConsulta, o devuelve en una tabla la columna SinRegistros en caso que no traiga registros.
+            </summary>
+            <param name="poCommand">Objeto OracleCommand el cual se ejecutará con los parámetros, query y conexión establecidas. </param>
+        </member>
+        <member name="M:Data.ClassData.getExecuteCommandToTable3(Oracle.ManagedDataAccess.Client.OracleCommand,System.String)">
+            <summary>
+            Método que permite ejecutar un OracleCommand y Retorna un DataTable con los resultados a través de OracleDataAdapter V2. 
+            Ideal para ejecutar paquetes o procedimientos con parámetros. 
+            A diferencia del método getExecuteCommandToTable, éste te devueve en una tabla el error (en caso de haber ocurrido) en una columna llamada ErrorDeConsulta, o devuelve en una tabla la columna SinRegistros en caso que no traiga registros.
+            </summary>
+            <param name="poCommand">Parámetro de Conexión Oracle</param>
+            <param name="psParametroOutputError">Nombre del parámetro de tipo OUTPUT para leer el posible error y retornarlo en el DataTable con la columna Error.</param>
+        </member>
+        <member name="M:Data.ClassData.getExecuteNonQuery(Oracle.ManagedDataAccess.Client.OracleCommand)">
+            <summary>
+            Ejecuta un OracleCommand sin retornar algun valor. Ideal para insert o update que no se necesite controlar su salida.
+            Si necesita controlar la salida (mediante un output) utilice el método getExecuteCommand.
+            </summary>
+            <param name="poCommand">Objeto OracleCommand el cual se ejecutará con los parámetros, query y conexión establecidas. </param>
+        </member>
+        <member name="M:Data.ClassData.getOpenOracleConnection(Oracle.ManagedDataAccess.Client.OracleConnection)">
+            <summary>
+            Método que permite abrir la conexion a la base de datos. 
+            Util cuando se necesite controlar la apertura en un Exception.
+            Retorna vacio si no hay error, y en error retorna solo el mensaje de error, sin formato o agregados.
+            </summary>
+            <param name="poConnection">Objeto OracleConnection que se desea abrir.</param>
+        </member>
+        <member name="M:Data.ClassData.getCloseOracleConnection(Oracle.ManagedDataAccess.Client.OracleConnection)">
+            <summary>
+            Método que permite cerrar la conexion a la base de datos.
+            Recomendable utilizarlo para verificar su correcto cierre.
+            01-FEB-2017 Actualización: Cuando se invoca este método, puede que se queden "vivas" las sesiones en la BD. Se agregó 2 ínstrucciones para destruir la sesión y destruir los objetos relacionados a la sesión en curso.
+            </summary>
+            <param name="poConnection">Objeto OracleConnection que se desea cerrar.</param>
+        </member>
+        <member name="M:Data.ClassData.getForceToCloseOracleConnection(Oracle.ManagedDataAccess.Client.OracleConnection)">
+            <summary>
+            Método que permite cerrar la conexion a la base de datos, forzando la limpieza de las sesiones asociadas a la conexion.
+            No recomendable su uso cuando se manejan valores en variables globales en paquetes y que estos no seteen valores en los diferentes procedimientos.
+            </summary>
+            <param name="poConnection">Objeto OracleConnection que se desea cerrar.</param>
+        </member>
+        <member name="M:Data.ClassData.getConnection(System.String,System.String)">
+            <summary>
+            Método privado que permite desencriptar la conexion.
+            </summary>
+            <param name="psConnection">Cadena de conexión encriptada.</param>
+            <param name="psKey">La llave con la que se encriptó la cadena de conexión.</param>
+        </member>
+    </members>
+</doc>
